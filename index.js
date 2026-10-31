@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 const corsOptions = require("./config/corsOption");
 const app = express();
@@ -13,6 +14,7 @@ connectDB();
 // middleware
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser());
 app.use("/auth", require("./routes/authRoutes"));
 
 app.get("/", (req, res) => {
